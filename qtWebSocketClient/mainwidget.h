@@ -2,10 +2,12 @@
 #define MAINWIDGET_H
 
 #include <QtWidgets>
+#include <QtWebSockets/QWebSocket>
 
 #include "widgetdialog.h"
 #include "widgetoptions.h"
 #include "client.h"
+#include "compressor.h"
 
 class MainWidget : public QTabWidget
 {
@@ -16,12 +18,13 @@ public:
 signals:
 
 public slots:
-
+    void slotSend(QString message, bool needToCompress);
 
 private:
-    WidgetDialog*       m_dialog;
-    WidgetOptions*      m_options;
-    Client*             m_client;
+    WidgetDialog*       mDialog;
+    WidgetOptions*      mOptions;
+    Client*             mClient;
+    Compressor*         mCompressor;
 };
 
 #endif // MAINWIDGET_H

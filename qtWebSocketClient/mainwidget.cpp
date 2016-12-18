@@ -2,11 +2,22 @@
 
 MainWidget::MainWidget()
 {
-    m_dialog    = new WidgetDialog(this);
-    m_options   = new WidgetOptions(this);
-    m_client    = new Client(this);
+    mDialog        = new WidgetDialog(this);
+    mOptions       = new WidgetOptions(this);
+    mClient        = new Client(this);
+    mCompressor    = new Compressor(this);
 
-    addTab(m_dialog, "Dialog");
-    addTab(m_options, "Options");
+    addTab(mDialog, "Dialog");
+    addTab(mOptions, "Options");
+}
+
+void MainWidget::slotSend(QString message, bool needToCompress)
+{
+    if (needToCompress) {
+        QByteArray bytes = message.toUtf8();
+        mCompressor->compressMessage(bytes);
+        message = QString(bytes);
+    }
+    mClient->getSocket()->sendTextMessage(message);
 }
 

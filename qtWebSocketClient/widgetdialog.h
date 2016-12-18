@@ -16,11 +16,11 @@ signals:
 public slots:
 
 private:
-    QTextEdit*      m_log;
-    QLineEdit*      m_message;
-    QPushButton*    m_buttonConnect;
-    QPushButton*    m_buttonSend;
-    QPushButton*    m_buttonDisconnect;
+    QTextEdit*      mLog;
+    QLineEdit*      mMessage;
+    QPushButton*    mButtonConnect;
+    QPushButton*    mButtonSend;
+    QPushButton*    mButtonDisconnect;
 };
 
 #endif // WIDGETDIALOG_H

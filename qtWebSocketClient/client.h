@@ -12,6 +12,8 @@ public:
     explicit Client(QObject *parent = 0);
     ~Client();
 
+    QWebSocket* getSocket();
+
 signals:
 
 public slots:
