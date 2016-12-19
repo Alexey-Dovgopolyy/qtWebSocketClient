@@ -8,5 +8,7 @@ MainWidget::MainWidget()
 
     addTab(m_dialog, "Dialog");
     addTab(m_options, "Options");
+
+    connect()
 }
 
