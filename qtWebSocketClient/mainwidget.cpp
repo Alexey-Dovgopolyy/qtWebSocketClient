@@ -2,22 +2,30 @@
 
 MainWidget::MainWidget()
 {
-    mDialog        = new WidgetDialog(this);
-    mOptions       = new WidgetOptions(this);
     mClient        = new Client(this);
-    mCompressor    = new Compressor(this);
+    mDialog        = new WidgetDialog(this);
+    mOptions       = new WidgetOptions(this);    
 
     addTab(mDialog, "Dialog");
     addTab(mOptions, "Options");
+
+    connectionConfiguration();
 }
 
-void MainWidget::slotSend(QString message, bool needToCompress)
+void MainWidget::connectionConfiguration()
 {
-    if (needToCompress) {
-        QByteArray bytes = message.toUtf8();
-        mCompressor->compressMessage(bytes);
-        message = QString(bytes);
-    }
-    mClient->getSocket()->sendTextMessage(message);
+    connect(mOptions, &WidgetOptions::signalCompress, mClient, &Client::slotCompress);
+    connect(mOptions, &WidgetOptions::signalBinary, mClient, &Client::slotBinary);
+    connect(mOptions, &WidgetOptions::signalSetHost, mClient, &Client::slotSetHost);
+    connect(mOptions, &WidgetOptions::signalSetPort, mClient, &Client::slotSetPort);
+
+    connect(mDialog, &WidgetDialog::signalConnectToHost, mClient, &Client::slotConnect);
+    connect(mDialog, &WidgetDialog::signalSendMessage, mClient, &Client::slotSendMessage);
+    connect(mDialog, &WidgetDialog::signalDisconnectFromHost, mClient, &Client::slotDisconnect);
+
+    connect(mClient, &Client::signalLogMessage, mDialog, &WidgetDialog::slotSetLog, Qt::QueuedConnection);
+
 }
+
+
 

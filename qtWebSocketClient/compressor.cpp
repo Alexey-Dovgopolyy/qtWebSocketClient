@@ -44,7 +44,9 @@ QByteArray Compressor::uncompressMessage(QByteArray &input)
     switch(z_result)
     {
         case Z_OK :
-            return QByteArray(final_data, size_out);
+            input.clear();
+            input = QByteArray(final_data, size_out);
+            return QByteArray();
 
         case Z_MEM_ERROR :
             qDebug() << "Out of memory";

@@ -21,6 +21,7 @@ WidgetDialog::WidgetDialog(QWidget *parent) : QWidget(parent)
     verticalLayout->addLayout(horizontalLayout);
 
     setLayout(verticalLayout);
+    connctenConfig();
 }
 
 WidgetDialog::~WidgetDialog()
@@ -28,3 +29,19 @@ WidgetDialog::~WidgetDialog()
     qDebug() << "~Dialog";
 }
 
+void WidgetDialog::connctenConfig()
+{
+    connect(mButtonConnect, &QPushButton::clicked, this, &WidgetDialog::signalConnectToHost);
+    connect(mButtonSend, &QPushButton::clicked, this, &WidgetDialog::slotClickButtonSend);
+    connect(mButtonDisconnect, &QPushButton::clicked, this, &WidgetDialog::signalDisconnectFromHost);
+}
+
+void WidgetDialog::slotClickButtonSend()
+{
+    emit signalSendMessage(mMessage->text());
+}
+
+void WidgetDialog::slotSetLog(QString log)
+{
+    mLog->append(log);
+}
