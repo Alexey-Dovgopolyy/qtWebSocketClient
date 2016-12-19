@@ -9,3 +9,8 @@ Client::~Client()
 {
     qDebug() << "~Client";
 }
+
+QWebSocket *Client::getSocket()
+{
+    return mSocket;
+}

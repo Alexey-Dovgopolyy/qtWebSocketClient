@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += websockets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -31,7 +32,8 @@ SOURCES += main.cpp \
     zlib/inftrees.c \
     zlib/trees.c \
     zlib/uncompr.c \
-    zlib/zutil.c
+    zlib/zutil.c \
+    compressor.cpp
 
 HEADERS  += \
     mainwidget.h \
@@ -48,6 +50,7 @@ HEADERS  += \
     zlib/trees.h \
     zlib/zconf.h \
     zlib/zlib.h \
-    zlib/zutil.h
+    zlib/zutil.h \
+    compressor.h
 
 
