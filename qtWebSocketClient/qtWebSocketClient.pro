@@ -33,7 +33,10 @@ SOURCES += main.cpp \
     zlib/trees.c \
     zlib/uncompr.c \
     zlib/zutil.c \
-    compressor.cpp
+    abstractcompressor.cpp \
+    zlibcompressor.cpp \
+    abstractcompressorfacrory.cpp \
+    zlibcompressorfactory.cpp
 
 HEADERS  += \
     mainwidget.h \
@@ -51,6 +54,9 @@ HEADERS  += \
     zlib/zconf.h \
     zlib/zlib.h \
     zlib/zutil.h \
-    compressor.h
+    abstractcompressor.h \
+    zlibcompressor.h \
+    abstractcompressorfacrory.h \
+    zlibcompressorfactory.h
 
 

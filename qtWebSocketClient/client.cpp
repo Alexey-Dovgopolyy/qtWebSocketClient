@@ -1,6 +1,6 @@
 #include "client.h"
 
-Client::Client(QObject *parent)
+Client::Client(AbstractCompressorFacrory *factory, QObject *parent)
     : QObject           (parent)
     , mHost             ("localhost")
     , mPort             ("10000")
@@ -10,7 +10,7 @@ Client::Client(QObject *parent)
 {
     qDebug() << "Client constructor";
 
-    mCompressor = new Compressor(this);
+    mCompressor = factory->createCompressor(this);
     mSocket = new QWebSocket;
 
     connectConfig();

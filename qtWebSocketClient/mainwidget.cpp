@@ -2,7 +2,9 @@
 
 MainWidget::MainWidget()
 {
-    mClient        = new Client(this);
+    AbstractCompressorFacrory* abstractFactory = new ZlibCompressorFactory(this);
+
+    mClient        = new Client(abstractFactory, this);
     mDialog        = new WidgetDialog(this);
     mOptions       = new WidgetOptions(this);    
 

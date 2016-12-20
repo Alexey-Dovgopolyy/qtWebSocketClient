@@ -4,13 +4,14 @@
 #include <QObject>
 #include <QDebug>
 #include <QtWebSockets/QWebSocket>
-#include "compressor.h"
+#include "abstractcompressor.h"
+#include "abstractcompressorfacrory.h"
 
 class Client : public QObject
 {
     Q_OBJECT
 public:
-    explicit Client(QObject *parent = 0);
+    explicit Client(AbstractCompressorFacrory* factory, QObject *parent = 0);
     ~Client();
 
     void connectConfig();
@@ -38,14 +39,15 @@ private slots:
     void slotErrorsHandler              (QAbstractSocket::SocketError error);
 
 private:
-    QWebSocket*     mSocket;
-    Compressor*     mCompressor;
-    QUrl            mUrl;
-    QString         mHost;
-    QString         mPort;
-    bool            mIsConnected;
-    bool            mIsBinary;
-    bool            mNeedToCompress;
+    QWebSocket*                     mSocket;
+    AbstractCompressor*             mCompressor;
+    AbstractCompressorFacrory*      mFactory;
+    QUrl                            mUrl;
+    QString                         mHost;
+    QString                         mPort;
+    bool                            mIsConnected;
+    bool                            mIsBinary;
+    bool                            mNeedToCompress;
 };
 
 #endif // CLIENT_H

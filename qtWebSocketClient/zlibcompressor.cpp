@@ -1,16 +1,16 @@
-#include "compressor.h"
+#include "zlibcompressor.h"
 
-Compressor::Compressor(QObject *parent) : QObject(parent)
+ZlibCompressor::ZlibCompressor(QObject *parent) : AbstractCompressor(parent)
 {
-    qDebug() << "Compressor constructor";
+    qDebug() << "ZlibCompressor constructor";
 }
 
-Compressor::~Compressor()
+ZlibCompressor::~ZlibCompressor()
 {
-    qDebug() << "~Compressor";
+    qDebug() << "~ZlibCompressor";
 }
 
-QByteArray Compressor::compressMessage(QByteArray &input)
+void ZlibCompressor::compressMessage(QByteArray &input)
 {
     char    data_out[25000];
     ulong   size_out = sizeof(data_out);
@@ -23,14 +23,13 @@ QByteArray Compressor::compressMessage(QByteArray &input)
                         Z_BEST_COMPRESSION))
     {
         qDebug() << "Can't compress!";
-        return QByteArray();
+        return;
     }
     input.clear();
     input = QByteArray(data_out,size_out);
-    return QByteArray();
 }
 
-QByteArray Compressor::uncompressMessage(QByteArray &input)
+void ZlibCompressor::uncompressMessage(QByteArray &input)
 {
     char            final_data[20010];
     ulong           size_out = 10010;
@@ -46,18 +45,18 @@ QByteArray Compressor::uncompressMessage(QByteArray &input)
         case Z_OK :
             input.clear();
             input = QByteArray(final_data, size_out);
-            return QByteArray();
+            return;
 
         case Z_MEM_ERROR :
             qDebug() << "Out of memory";
-            return QByteArray();
+            return;
 
         case Z_BUF_ERROR :
             qDebug() << "Output buffer wasn't large enough!";
-            return QByteArray();
+            return;
 
         case Z_DATA_ERROR :
             qDebug() << "Wrong data!";
-            return QByteArray();
+            return;
     }
 }

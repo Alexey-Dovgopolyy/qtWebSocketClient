@@ -7,6 +7,8 @@
 #include "widgetdialog.h"
 #include "widgetoptions.h"
 #include "client.h"
+#include "abstractcompressorfacrory.h"
+#include "zlibcompressorfactory.h"
 
 class MainWidget : public QTabWidget
 {
@@ -24,7 +26,7 @@ private:
     WidgetDialog*       mDialog;
     WidgetOptions*      mOptions;
     Client*             mClient;
-
+    AbstractCompressor* mCompressorFactory;
 };
 
 #endif // MAINWIDGET_H
