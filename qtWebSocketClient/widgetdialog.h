@@ -3,6 +3,7 @@
 
 #include <QtWidgets>
 #include <QDebug>
+#include "logwriter.h"
 
 class WidgetDialog : public QWidget
 {
@@ -28,6 +29,7 @@ private:
     QPushButton*    mButtonConnect;
     QPushButton*    mButtonSend;
     QPushButton*    mButtonDisconnect;
+    LogWriter*      mLogWriter;
 };
 
 #endif // WIDGETDIALOG_H

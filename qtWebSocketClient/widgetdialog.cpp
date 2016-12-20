@@ -9,6 +9,7 @@ WidgetDialog::WidgetDialog(QWidget *parent) : QWidget(parent)
     mButtonConnect         = new QPushButton("Connect");
     mButtonSend            = new QPushButton("Send");
     mButtonDisconnect      = new QPushButton("Disconnect");
+    mLogWriter             = new LogWriter(this);
 
     QHBoxLayout* horizontalLayout = new QHBoxLayout;
     horizontalLayout->addWidget(mButtonConnect);
@@ -44,4 +45,5 @@ void WidgetDialog::slotClickButtonSend()
 void WidgetDialog::slotSetLog(QString log)
 {
     mLog->append(log);
+    mLogWriter->writeLog(log);
 }

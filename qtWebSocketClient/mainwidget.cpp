@@ -1,10 +1,10 @@
 #include "mainwidget.h"
 
-MainWidget::MainWidget()
+MainWidget::MainWidget(AbstractCompressorFacrory *factory)
 {
-    AbstractCompressorFacrory* abstractFactory = new ZlibCompressorFactory(this);
+    //AbstractCompressorFacrory* abstractFactory = new ZlibCompressorFactory(this);
 
-    mClient        = new Client(abstractFactory, this);
+    mClient        = new Client(factory, this);
     mDialog        = new WidgetDialog(this);
     mOptions       = new WidgetOptions(this);    
 

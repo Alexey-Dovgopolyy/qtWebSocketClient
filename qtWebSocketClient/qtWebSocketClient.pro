@@ -36,7 +36,8 @@ SOURCES += main.cpp \
     abstractcompressor.cpp \
     zlibcompressor.cpp \
     abstractcompressorfacrory.cpp \
-    zlibcompressorfactory.cpp
+    zlibcompressorfactory.cpp \
+    logwriter.cpp
 
 HEADERS  += \
     mainwidget.h \
@@ -57,6 +58,7 @@ HEADERS  += \
     abstractcompressor.h \
     zlibcompressor.h \
     abstractcompressorfacrory.h \
-    zlibcompressorfactory.h
+    zlibcompressorfactory.h \
+    logwriter.h
 
 
