@@ -44,6 +44,9 @@ AbstractCompressor *Client::createCompressor(QString type)
     if (type == "Zlib") {
         return new ZlibCompressor(this);
     }
+    else {
+        return new ZlibCompressor(this);
+    }
 }
 
 void Client::slotCompress(bool needToCompress)

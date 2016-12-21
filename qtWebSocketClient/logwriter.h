@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QDateTime>
 #include <QDir>
+#include <QSysInfo>
 
 class LogWriter : public QObject
 {
@@ -15,6 +16,7 @@ public:
     ~LogWriter();
 
     void writeLog(QString log);
+    void logAdaptation(QString& log);
 
 private:
     QString path;
