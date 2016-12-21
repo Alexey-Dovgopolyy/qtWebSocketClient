@@ -7,13 +7,12 @@
 #include "widgetdialog.h"
 #include "widgetoptions.h"
 #include "client.h"
-//#include "abstractcompressorfacrory.h"
 
 class MainWidget : public QTabWidget
 {
     Q_OBJECT
 public:
-    MainWidget(AbstractCompressorFacrory* factory);
+    MainWidget();
 
     void connectionConfiguration();
 

@@ -1,6 +1,6 @@
 #include "client.h"
 
-Client::Client(AbstractCompressorFacrory *factory, QObject *parent)
+Client::Client(QObject *parent)
     : QObject           (parent)
     , mHost             ("localhost")
     , mPort             ("10000")
@@ -10,7 +10,8 @@ Client::Client(AbstractCompressorFacrory *factory, QObject *parent)
 {
     qDebug() << "Client constructor";
 
-    mCompressor = factory->createCompressor(this);
+    //mCompressor = factory->createCompressor(this);
+    mCompressor = createCompressor("Zlib");
     mSocket = new QWebSocket;
 
     connectConfig();
@@ -36,6 +37,13 @@ void Client::connectConfig()
 QWebSocket *Client::getSocket()
 {
     return mSocket;
+}
+
+AbstractCompressor *Client::createCompressor(QString type)
+{
+    if (type == "Zlib") {
+        return new ZlibCompressor(this);
+    }
 }
 
 void Client::slotCompress(bool needToCompress)

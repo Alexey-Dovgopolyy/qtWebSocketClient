@@ -4,18 +4,18 @@
 #include <QObject>
 #include <QDebug>
 #include <QtWebSockets/QWebSocket>
-#include "abstractcompressor.h"
-#include "abstractcompressorfacrory.h"
+#include "zlibcompressor.h"
 
 class Client : public QObject
 {
     Q_OBJECT
 public:
-    explicit Client(AbstractCompressorFacrory* factory, QObject *parent = 0);
+    explicit Client(QObject *parent = 0);
     ~Client();
 
-    void connectConfig();
-    QWebSocket* getSocket();
+    void                    connectConfig();
+    QWebSocket*             getSocket();
+    AbstractCompressor*     createCompressor(QString type);
 
 signals:
     void signalLogMessage               (QString message);
@@ -41,7 +41,6 @@ private slots:
 private:
     QWebSocket*                     mSocket;
     AbstractCompressor*             mCompressor;
-    AbstractCompressorFacrory*      mFactory;
     QUrl                            mUrl;
     QString                         mHost;
     QString                         mPort;

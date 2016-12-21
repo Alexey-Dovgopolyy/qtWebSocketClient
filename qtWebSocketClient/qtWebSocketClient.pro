@@ -35,8 +35,6 @@ SOURCES += main.cpp \
     zlib/zutil.c \
     abstractcompressor.cpp \
     zlibcompressor.cpp \
-    abstractcompressorfacrory.cpp \
-    zlibcompressorfactory.cpp \
     logwriter.cpp
 
 HEADERS  += \
@@ -57,8 +55,6 @@ HEADERS  += \
     zlib/zutil.h \
     abstractcompressor.h \
     zlibcompressor.h \
-    abstractcompressorfacrory.h \
-    zlibcompressorfactory.h \
     logwriter.h
 
 
